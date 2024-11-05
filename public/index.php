@@ -4,4 +4,14 @@ require "../src/controllers/products.php";
 
 $controller = new Products;
 
-$controller->index();
+$action = $_GET["action"];
+
+if ($action === "index") {
+
+    $controller->index();
+
+} elseif ($action === "show") {
+
+    $controller->show();
+
+}
