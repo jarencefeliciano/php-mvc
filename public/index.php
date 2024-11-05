@@ -12,6 +12,10 @@ $router->add("/", ["controller" => "home", "action" => "index"]);
 
 $params = $router->match($path);
 
+if ($params === false) {
+    exit("No route matched.");
+}
+
 $controller = $params["controller"];
 $action = $params["action"];
 
