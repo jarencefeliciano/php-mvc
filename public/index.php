@@ -1,10 +1,11 @@
 <?php
 
-$path = $_SERVER["REQUEST_URI"];
-exit($path);
+$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
-$controller = $_GET["controller"];
-$action = $_GET["action"];
+$segments = explode("/", $path);
+
+$controller = $segments[1];
+$action = $segments[2];
 
 require "../src/controllers/$controller.php";
 
