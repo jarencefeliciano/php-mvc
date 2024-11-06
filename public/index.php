@@ -18,7 +18,7 @@ if ($params === false) {
     exit("No route matched.");
 }
 
-$controller = $params["controller"];
+$controller = "App\Controllers\\" . ucwords($params["controller"]);
 $action = $params["action"];
 
 //require "../src/controllers/$controller.php";
