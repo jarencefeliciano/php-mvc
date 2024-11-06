@@ -21,8 +21,6 @@ if ($params === false) {
 $controller = "App\Controllers\\" . ucwords($params["controller"]);
 $action = $params["action"];
 
-//require "../src/controllers/$controller.php";
-
 $controller_object = new $controller;
 
 $controller_object->$action();
