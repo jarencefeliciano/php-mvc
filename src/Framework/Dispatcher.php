@@ -21,8 +21,6 @@ class Dispatcher
         $controller = $this->getControllerName($params);
         $action = $this->getActionName($params);
 
-        exit($action);
-
         $controller_object = new $controller;
         $args = $this->getActionArguments($controller, $action, $params);
         $controller_object->$action(...$args);
@@ -47,6 +45,9 @@ class Dispatcher
         $controller = $params["controller"];
         $controller = str_replace("-", "", ucwords(strtolower($controller), "-"));
         $namespace = "App\Controllers";
+        if (array_key_exists("namespace", $params)) {
+            $namespace .= "\\" . $params["namespace"];
+        }
         return $namespace . "\\" . $controller;
     }
 
