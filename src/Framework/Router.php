@@ -19,7 +19,6 @@ class Router
         $path = trim($path, "/");
         foreach ($this->routes as $route) {
             $pattern = $this->getPatternFromRoutePath($route["path"]);
-            echo $pattern, "\n";
             if (preg_match($pattern, $path, $matches)) {
                 $matches = array_filter($matches, "is_string", ARRAY_FILTER_USE_KEY);
                 $params = array_merge($matches, $route["params"]);
@@ -43,6 +42,6 @@ class Router
             return $segment;
         }, $segments);
 
-        return "#^" . implode("/", $segments) . "$#";
+        return "#^" . implode("/", $segments) . "$#i";
     }
 }
