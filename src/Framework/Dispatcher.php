@@ -19,9 +19,9 @@ class Dispatcher
         }
 
         $controller = $this->getControllerName($params);
-        $action = $params["action"];
+        $action = $this->getActionName($params);
 
-        exit($controller);
+        exit($action);
 
         $controller_object = new $controller;
         $args = $this->getActionArguments($controller, $action, $params);
@@ -48,5 +48,12 @@ class Dispatcher
         $controller = str_replace("-", "", ucwords(strtolower($controller), "-"));
         $namespace = "App\Controllers";
         return $namespace . "\\" . $controller;
+    }
+
+    private function getActionName(array $params): string
+    {
+        $action = $params["action"];
+        $action = lcfirst(str_replace("-", "", ucwords(strtolower($action), "-")));
+        return $action;
     }
 }
