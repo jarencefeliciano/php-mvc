@@ -15,8 +15,9 @@ class Products
         require "../src/views/products_index.php";
     }
 
-    public function show()
+    public function show(string $id)
     {
+        var_dump($id);
         require "../src/views/products_show.php";
     }
 }

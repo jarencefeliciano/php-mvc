@@ -21,6 +21,6 @@ class Dispatcher
 
         $controller_object = new $controller;
 
-        $controller_object->$action();
+        $controller_object->$action($params["id"]);
     }
 }
