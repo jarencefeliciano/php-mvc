@@ -28,3 +28,5 @@ $action = $params["action"];
 $controller_object = new $controller;
 
 $controller_object->$action();
+
+$dispatcher = new Framework\Dispatcher($router);
