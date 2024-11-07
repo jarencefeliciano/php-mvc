@@ -18,8 +18,10 @@ class Dispatcher
             exit("No route matched.");
         }
 
-        $controller = "App\Controllers\\" . ucwords($params["controller"]);
+        $controller = $this->getControllerName($params);
         $action = $params["action"];
+
+        exit($controller);
 
         $controller_object = new $controller;
         $args = $this->getActionArguments($controller, $action, $params);
@@ -38,5 +40,13 @@ class Dispatcher
         }
 
         return $args;
+    }
+
+    private function getControllerName(array $params): string
+    {
+        $controller = $params["controller"];
+        $controller = str_replace("-", "", ucwords(strtolower($controller), "-"));
+        $namespace = "App\Controllers";
+        return $namespace . "\\" . $controller;
     }
 }
