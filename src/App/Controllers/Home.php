@@ -10,6 +10,10 @@ class Home
     {
         $viewer = new Viewer;
 
+        echo $viewer->render("shared/header.php");
+
         echo $viewer->render("Home/index.php");
+
+        echo $viewer->render("shared/footer.php");
     }
 }

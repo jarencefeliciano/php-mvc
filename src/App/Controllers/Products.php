@@ -15,18 +15,26 @@ class Products
 
         $viewer = new Viewer;
 
+        echo $viewer->render("shared/header.php");
+
         echo $viewer->render("Products/index.php", [
           "products" => $products
         ]);
+
+        echo $viewer->render("shared/footer.php");
     }
 
     public function show(string $id)
     {
         $viewer = new Viewer;
 
+        echo $viewer->render("shared/header.php");
+
         echo $viewer->render("Products/show.php", [
             "id" => $id
         ]);
+
+        echo $viewer->render("shared/footer.php");
     }
 
     public function showPage(string $title, string $id, string $page)
