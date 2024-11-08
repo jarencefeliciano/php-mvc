@@ -3,16 +3,15 @@
 namespace App\Models;
 
 use PDO;
+use App\Database;
 
 class Product
 {
     public function getProducts(): array
     {
-        $dsn = "mysql:host=localhost;dbname=php_mvc;charset=utf8mb4;port=3306";
+        $database = new Database;
 
-        $pdo = new PDO($dsn, "jarence", "@nd7srmu2!", [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ]);
+        $pdo = $database->getConnection();
 
         $stmt = $pdo->query("SELECT * FROM products");
 
