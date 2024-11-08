@@ -20,9 +20,10 @@ $router->add("/{controller}/{action}");
 
 $container = new Framework\Container;
 
-$database = new App\Database("localhost", "php_mvc", "jarence", "@nd7srmu2!");
 
-$container->set(App\Database::class, $database);
+$container->set(App\Database::class, function() {
+    return new App\Database("localhost", "php_mvc", "jarence", "@nd7srmu2!");
+});
 
 $dispatcher = new Framework\Dispatcher($router, $container);
 
