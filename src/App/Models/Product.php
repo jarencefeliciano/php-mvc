@@ -7,11 +7,13 @@ use App\Database;
 
 class Product
 {
+    public function __construct(private Database $database)
+    {
+    }
+
     public function getProducts(): array
     {
-        $database = new Database;
-
-        $pdo = $database->getConnection();
+        $pdo = $this->database->getConnection();
 
         $stmt = $pdo->query("SELECT * FROM products");
 
