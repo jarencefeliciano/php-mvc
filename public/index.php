@@ -18,6 +18,8 @@ $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/{controller}/{action}/{id:\d+}");
 $router->add("/{controller}/{action}");
 
-$dispatcher = new Framework\Dispatcher($router);
+$container = new Framework\Container;
+
+$dispatcher = new Framework\Dispatcher($router, $container);
 
 $dispatcher->handle($path);
