@@ -10,8 +10,7 @@ class Viewer
 
         ob_start();
 
-        require "../src/views/$template";
-        // return file_get_contents("../src/views/$template");
+        require_once __DIR__ . '/../App/Views/' . $template;
 
         return ob_get_clean();
     }
