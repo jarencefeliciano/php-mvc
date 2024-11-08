@@ -6,11 +6,18 @@ use PDO;
 
 class Database
 {
+    public function __construct(private string $host,
+                                private string $name,
+                                private string $user,
+                                private string $password)
+    {
+    }
+
     public function getConnection(): PDO
     {
-        $dsn = "mysql:host=localhost;dbname=php_mvc;charset=utf8mb4;port=3306";
+        $dsn = "mysql:host={$this->host};dbname={$this->name};charset=utf8mb4;port=3306";
 
-        return new PDO($dsn, "jarence", "@nd7srmu2!", [
+        return new PDO($dsn, $this->user, $this->password, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]);
     }
