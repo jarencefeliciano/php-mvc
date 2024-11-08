@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Product;
+use Framework\Viewer;
 
 class Products
 {
@@ -11,6 +12,8 @@ class Products
         $model = new Product;
 
         $products = $model->getProducts();
+
+        $viewer = new Viewer;
 
         require "../src/views/products_index.php";
     }
