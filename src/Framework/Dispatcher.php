@@ -2,6 +2,7 @@
 
 namespace Framework;
 
+use ReflectionClass;
 use ReflectionMethod;
 use App\Models\Product;
 
@@ -21,6 +22,16 @@ class Dispatcher
 
         $controller = $this->getControllerName($params);
         $action = $this->getActionName($params);
+
+        $reflector = new ReflectionClass($controller);
+        $constructor = $reflector->getConstructor();
+
+        if ($constructor !== null) {
+            foreach ($constructor->getParameters() as $parameter) {
+                $type = (string) $parameter->getType();
+                var_dump($type);
+            }
+        }
 
         $controller_object = new $controller(new Viewer, new Product);
         $args = $this->getActionArguments($controller, $action, $params);
