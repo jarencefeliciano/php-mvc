@@ -63,4 +63,14 @@ class Products
 
         echo $this->viewer->render("shared/footer.php");
     }
+
+    public function create()
+    {
+        $data = [
+            "name" => $_POST["name"],
+            "description" => $_POST["description"]
+        ];
+
+        var_dump($this->model->insert($data));
+    }
 }
