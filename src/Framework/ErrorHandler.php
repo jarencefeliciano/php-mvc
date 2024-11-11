@@ -30,9 +30,7 @@ class ErrorHandler
             $template = "500.php";
         }
 
-        $show_erros = true;
-
-        if ($show_erros) {
+        if ($_ENV["SHOW_ERRORS"]) {
             ini_set("display_errors", "1");
         } else {
             ini_set("display_errors", "0");
