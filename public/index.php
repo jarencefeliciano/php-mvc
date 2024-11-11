@@ -8,6 +8,8 @@ if ($show_erros) {
     ini_set("display_errors", "1");
 } else {
     ini_set("display_errors", "0");
+    ini_set("log_errors", "1");
+    echo ini_get("error_log");
     require "../src/App/views/500.php";
 }
 
