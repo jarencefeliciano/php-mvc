@@ -16,7 +16,7 @@ class Products
 
     public function index()
     {
-        $products = $this->model->getProducts();
+        $products = $this->model->findAll();
 
         echo $this->viewer->render("shared/header.php", [
             "title" => "Products"
