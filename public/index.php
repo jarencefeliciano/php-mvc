@@ -17,11 +17,7 @@ if ($path === false) {
 
 $router = require "../src/config/routes.php";
 
-$container = new Framework\Container;
-
-$container->set(App\Database::class, function() {
-    return new App\Database("localhost", "php_mvc", "jarence", "@nd7srmu2!");
-});
+$container = require "../src/config/services.php";
 
 $dispatcher = new Framework\Dispatcher($router, $container);
 
