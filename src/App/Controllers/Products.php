@@ -71,8 +71,18 @@ class Products
             "description" => empty($_POST["description"]) ? null : $_POST["description"]
         ];
 
-        var_dump($this->model->insert($data));
+        if ($this->model->insert($data)) {
+            echo "record saved.";
+        } else {
+            echo $this->viewer->render("shared/header.php", [
+                "title" => "New Product"
+            ]);
 
-        print_r($this->model->getErrors());
+            echo $this->viewer->render("Products/new.php", [
+              "errors" => $this->model->getErrors()
+            ]);
+
+            echo $this->viewer->render("shared/footer.php");
+        }
     }
 }
