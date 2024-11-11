@@ -1,1 +1,3 @@
-Show the product with ID <?= $id ?> here
+<h1><?= $product["name"] ?></h1>
+
+<p><?= $product["description"] ?></p>
