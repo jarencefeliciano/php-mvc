@@ -7,31 +7,7 @@ spl_autoload_register(function (string $class_name) {
 });
 
 set_error_handler("Framework\ErrorHandler::handleError");
-
-set_exception_handler(function (Throwable $exception) {
-
-    if ($exception instanceof Framework\Exceptions\PageNotFoundException) {
-        http_response_code(404);
-        $template = "404.php";
-    } else {
-        http_response_code(500);
-        $template = "500.php";
-    }
-
-    $show_erros = true;
-
-    if ($show_erros) {
-        ini_set("display_errors", "1");
-    } else {
-        ini_set("display_errors", "0");
-        ini_set("log_errors", "1");
-        // echo ini_get("error_log");
-        require "../src/App/views/$template";
-    }
-
-    throw $exception;
-});
-
+set_exception_handler("Framework\ErrorHandler::handleException");
 
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
