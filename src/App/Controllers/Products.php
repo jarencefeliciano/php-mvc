@@ -72,7 +72,7 @@ class Products
         ];
 
         if ($this->model->insert($data)) {
-            echo "record saved.";
+            echo "record saved, ID: ", $this->model->getInsertId();
         } else {
             echo $this->viewer->render("shared/header.php", [
                 "title" => "New Product"

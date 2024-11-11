@@ -41,6 +41,13 @@ abstract class Model
         return strtolower(array_pop($parts));
     }
 
+    public function getInsertId(): string
+    {
+        $conn = $this->database->getConnection();
+
+        return $conn->lastInsertId();
+    }
+
     public function findAll(): array
     {
         $pdo = $this->database->getConnection();
