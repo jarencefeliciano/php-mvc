@@ -1,0 +1,7 @@
+# Demo on how to remove the "public" from the URL
+# Only use this if you haven't configure the settings on the vhost (This is the alternative)
+
+# <IfModule mod_rewrite.c>
+#  RewriteEngine On
+#  RewriteRule (.*) public/$1
+# </IfModule>
