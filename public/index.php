@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
+define("ROOT_PATH", dirname(__DIR__));
+
 spl_autoload_register(function (string $class_name) {
-  require "../src/" . str_replace("\\", "/", $class_name) . ".php";
+  require ROOT_PATH . "/src/" . str_replace("\\", "/", $class_name) . ".php";
 });
 
 $dotenv = new Framework\Dotenv;
 
-$dotenv->load("../.env");
+$dotenv->load(ROOT_PATH . "/.env");
 
 set_error_handler("Framework\ErrorHandler::handleError");
 set_exception_handler("Framework\ErrorHandler::handleException");
@@ -19,9 +21,9 @@ if ($path === false) {
     throw new UnexpectedValueException("Malformed URL: '{$_SERVER["REQUEST_URI"]}'");
 }
 
-$router = require "../src/config/routes.php";
+$router = require ROOT_PATH ."/src/config/routes.php";
 
-$container = require "../src/config/services.php";
+$container = require ROOT_PATH . "/src/config/services.php";
 
 $dispatcher = new Framework\Dispatcher($router, $container);
 
