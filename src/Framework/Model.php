@@ -15,12 +15,23 @@ abstract class Model
     {
     }
 
+    private function getTable(): string
+    {
+        if ($this->table !== null) {
+            return $this->table;
+        }
+
+        $parts = explode("\\", $this::class);
+
+        return strtolower(array_pop($parts));
+    }
+
     public function findAll(): array
     {
         $pdo = $this->database->getConnection();
 
         $sql = "SELECT *
-                FROM {$this->table}";
+                FROM {$this->getTable()}s";
 
         $stmt = $pdo->query($sql);
 
@@ -32,7 +43,7 @@ abstract class Model
         $conn = $this->database->getConnection();
 
         $sql = "SELECT *
-                FROM {$this->table}
+                FROM {$this->getTable()}s
                 WHERE id = :id";
 
         $stmt = $conn->prepare($sql);
