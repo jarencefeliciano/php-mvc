@@ -14,9 +14,9 @@ $router->add("/{controller}/show/{id:\d+}", ["action" => "show"]);
 $router->add("/{controller}/edit/{id:\d+}", ["action" => "edit"]);
 $router->add("/{controller}/update/{id:\d+}", ["action" => "update"]);
 $router->add("/{controller}/delete/{id:\d+}", ["action" => "delete"]);
-$router->add("/{controller}/destroy/{id:\d+}", ["action" => "destroy"]);
+$router->add("/{controller}/destroy/{id:\d+}", ["action" => "destroy", "method" => "post"]);
 
-$router->add("/{controller}/{action}/{id:\d+}");
+// $router->add("/{controller}/{action}/{id:\d+}");
 $router->add("/{controller}/{action}");
 
 return $router;
