@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use Framework\Viewer;
 use App\Models\Product;
 use Framework\Controller;
 use Framework\Exceptions\PageNotFoundException;
