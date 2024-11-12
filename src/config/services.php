@@ -10,4 +10,8 @@ $container->set(App\Database::class, function() {
         $_ENV["DB_PASSWORD"]);
 });
 
+$container->set(Framework\TemplateViewerInterface::class, function () {
+    return new Framework\MVCTemplateViewer;
+});
+
 return $container;
