@@ -154,4 +154,18 @@ abstract class Model
 
         return $stmt->execute();
     }
+
+    public function delete(string $id): bool
+    {
+        $sql = "DELETE FROM {$this->getTable()}s
+                WHERE id = :id";
+
+        $conn = $this->database->getConnection();
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
 }
