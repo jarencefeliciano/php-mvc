@@ -5,19 +5,12 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\Viewer;
-use Framework\Request;
 use App\Models\Product;
+use Framework\Controller;
 use Framework\Exceptions\PageNotFoundException;
 
-class Products
+class Products extends Controller
 {
-    private Request $request;
-
-    public function setRequest(Request $request): void
-    {
-        $this->request = $request;
-    }
-
     public function __construct(private Viewer $viewer, private Product $model)
     {
     }
