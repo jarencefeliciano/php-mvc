@@ -99,7 +99,8 @@ class Products
             ]);
 
             echo $this->viewer->render("Products/new.php", [
-              "errors" => $this->model->getErrors()
+              "errors" => $this->model->getErrors(),
+              "product" => $data
             ]);
 
             echo $this->viewer->render("shared/footer.php");
@@ -114,12 +115,10 @@ class Products
             throw new PageNotFoundException("Product not found");
         }
 
-        $data = [
-            "name" => $_POST["name"],
-            "description" => empty($_POST["description"]) ? null : $_POST["description"]
-        ];
+        $product["name"] = $_POST["name"];
+        $product["description"] = empty($_POST["description"]) ? null : $_POST["description"];
 
-        if ($this->model->update($id, $data)) {
+        if ($this->model->update($id, $product)) {
             header("Location: /products/show/{$id}");
             exit;
         } else {
