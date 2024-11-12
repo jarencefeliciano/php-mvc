@@ -14,6 +14,17 @@ class Products
     {
     }
 
+    private function getProduct(string $id): array
+    {
+        $product = $this->model->find($id);
+
+        if ($product === false) {
+            throw new PageNotFoundException("Product not found");
+        }
+
+        return $product;
+    }
+
     public function index()
     {
         $products = $this->model->findAll();
@@ -31,11 +42,7 @@ class Products
 
     public function show(string $id)
     {
-        $product = $this->model->find($id);
-
-        if ($product === false) {
-            throw new PageNotFoundException("Product not found");
-        }
+        $product = $this->getProduct($id);
 
         echo $this->viewer->render("shared/header.php", [
             "title" => "Product"
@@ -50,11 +57,7 @@ class Products
 
     public function edit(string $id)
     {
-        $product = $this->model->find($id);
-
-        if ($product === false) {
-            throw new PageNotFoundException("Product not found");
-        }
+        $product = $this->getProduct($id);
 
         echo $this->viewer->render("shared/header.php", [
             "title" => "Edit Product"
@@ -109,11 +112,7 @@ class Products
 
     public function update(string $id)
     {
-        $product = $this->model->find($id);
-
-        if ($product === false) {
-            throw new PageNotFoundException("Product not found");
-        }
+        $product = $this->getProduct($id);
 
         $product["name"] = $_POST["name"];
         $product["description"] = empty($_POST["description"]) ? null : $_POST["description"];
