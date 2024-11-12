@@ -133,4 +133,19 @@ class Products
             echo $this->viewer->render("shared/footer.php");
         }
     }
+
+    public function delete(string $id)
+    {
+        $product = $this->getProduct($id);
+
+        echo $this->viewer->render("shared/header.php", [
+            "title" => "Delete Product"
+        ]);
+
+        echo $this->viewer->render("Products/delete.php", [
+            "product" => $product
+        ]);
+
+        echo $this->viewer->render("shared/footer.php");
+    }
 }
