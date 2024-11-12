@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= $title ?></title>
+  <title>{{ title }}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
@@ -13,13 +13,13 @@
 
 <a href="/products/new">New Product</a>
 
-<p>Total: <?= $total ?></p>
+<p>Total: {{ total }}</p>
 
 <?php foreach ($products as $product): ?>
 
 <h2>
-    <a href="/products/show/<?= $product["id"] ?>">
-        <?= htmlspecialchars($product["name"]) ?>
+    <a href="/products/show/{{ product["id"] }}">
+        {{ product["name"] }}
     </a>
 </h2>
 
