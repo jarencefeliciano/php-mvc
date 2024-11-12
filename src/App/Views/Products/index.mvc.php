@@ -15,7 +15,7 @@
 
 <p>Total: {{ total }}</p>
 
-<?php foreach ($products as $product): ?>
+{% foreach ($products as $product): %}
 
 <h2>
     <a href="/products/show/{{ product["id"] }}">
@@ -23,4 +23,4 @@
     </a>
 </h2>
 
-<?php endforeach; ?>
+{% endforeach; %}
