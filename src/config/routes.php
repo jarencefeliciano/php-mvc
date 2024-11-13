@@ -10,7 +10,7 @@ $router->add("/home/index", ["controller" => "home", "action" => "index"]);
 $router->add("/products", ["controller" => "products", "action" => "index"]);
 $router->add("/", ["controller" => "home", "action" => "index"]);
 
-$router->add("/{controller}/show/{id:\d+}", ["action" => "show", "middleware" => "message|message"]);
+$router->add("/{controller}/show/{id:\d+}", ["action" => "show", "middleware" => "deny|message|message"]);
 $router->add("/{controller}/edit/{id:\d+}", ["action" => "edit"]);
 $router->add("/{controller}/update/{id:\d+}", ["action" => "update"]);
 $router->add("/{controller}/delete/{id:\d+}", ["action" => "delete"]);
