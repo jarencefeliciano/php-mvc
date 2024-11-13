@@ -31,4 +31,11 @@ abstract class Controller
 
         return $this->response;
     }
+
+    protected function redirect(string $url): Response
+    {
+        $this->response->redirect($url);
+
+        return $this->response;
+    }
 }
