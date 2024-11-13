@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Models\Product;
+use Framework\Response;
 use Framework\Controller;
 use Framework\Exceptions\PageNotFoundException;
 
@@ -25,7 +26,7 @@ class Products extends Controller
         return $product;
     }
 
-    public function index()
+    public function index(): Response
     {
         $products = $this->model->findAll();
 
@@ -34,7 +35,7 @@ class Products extends Controller
           "total" => $this->model->getTotal()
         ]));
 
-        $this->response->send();
+        return $this->response;
     }
 
     public function show(string $id)

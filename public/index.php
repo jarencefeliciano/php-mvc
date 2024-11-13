@@ -15,8 +15,6 @@ $dotenv->load(ROOT_PATH . "/.env");
 set_error_handler("Framework\ErrorHandler::handleError");
 set_exception_handler("Framework\ErrorHandler::handleException");
 
-
-
 $router = require ROOT_PATH ."/src/config/routes.php";
 
 $container = require ROOT_PATH . "/src/config/services.php";
@@ -25,4 +23,6 @@ $dispatcher = new Framework\Dispatcher($router, $container);
 
 $request = Framework\Request::createFromGlobals();
 
-$dispatcher->handle($request);
+$response = $dispatcher->handle($request);
+
+$response->send();
