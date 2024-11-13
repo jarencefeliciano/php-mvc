@@ -8,7 +8,7 @@
 
 <form method="post" action="/products/create">
 
-    <?php require __DIR__ . "/../App/Views/Products/form.mvc.php"; ?>
+    {% include "/Products/form.mvc.php" %}
 
 </form>
 

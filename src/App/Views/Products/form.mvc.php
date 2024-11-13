@@ -1,7 +1,7 @@
 <label for="name">Name</label>
 <input type="text" id="name" name="name" value="{{ product["name"] }}">
 
-{% if (isset(errors["name"])): %}
+{% if (isset($errors["name"])): %}
     <p>{{ errors["name"] }}</p>
 {% endif; %}
 
