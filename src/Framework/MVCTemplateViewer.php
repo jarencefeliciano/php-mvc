@@ -14,7 +14,9 @@ class MVCTemplateViewer implements TemplateViewerInterface
 
         if (preg_match('#^{% extends "(?<template>.*)" %}#', $code, $matches)) {
             $base = file_get_contents($views_dir . $matches["template"]);
-            exit($base);
+            $blocks = $this->getBlocks($code);
+            print_r($blocks);
+            exit;
         }
 
         $code = $this->replaceVariables($code);
@@ -38,5 +40,12 @@ class MVCTemplateViewer implements TemplateViewerInterface
     private function replacePHP(string $code): string
     {
         return preg_replace("#{%\s*(.+)\s*%}#", "<?php $1 ?>", $code);
+    }
+
+    private function getBlocks(string $code): array
+    {
+        preg_match_all("#{% block (?<name>\w+) %}(?<content>.*){% endblock %}#", $code, $matches, PREG_SET_ORDER);
+
+        return $matches;
     }
 }
