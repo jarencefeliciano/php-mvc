@@ -9,3 +9,6 @@
 <body>
 
 {% yield body %}
+
+</body>
+</html>
