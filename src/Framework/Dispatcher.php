@@ -11,7 +11,8 @@ use Framework\Exceptions\PageNotFoundException;
 class Dispatcher
 {
     public function __construct(private Router $router,
-                                private Container $container)
+                                private Container $container,
+                                private array $middleware_classes)
     {
     }
 
@@ -41,9 +42,10 @@ class Dispatcher
                                                           $action,
                                                           $args);
 
-        $middleware = $this->container->get(\App\Middleware\ChangeResponseExample::class);
+        $middleware = $this->getMiddleware($params);
 
-        $middleware2 = $this->container->get(\App\Middleware\ChangeRequestExample::class);
+        print_r($middleware);
+        exit;
 
         $middleware_handler = new MiddlewareRequestHandler([$middleware2,
                                                             $middleware,
@@ -52,6 +54,17 @@ class Dispatcher
                                                             $controller_handler);
 
         return $middleware_handler->handle($request);
+    }
+
+    private function getMiddleware(array $params): array
+    {
+        if ( ! array_key_exists("middleware", $params)) {
+            return [];
+        }
+
+        $middleware = explode("|", $params["middleware"]);
+
+        return $middleware;
     }
 
     private function getActionArguments(string $controller, string $action, array $params): array
