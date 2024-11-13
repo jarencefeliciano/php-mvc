@@ -44,8 +44,14 @@ class MVCTemplateViewer implements TemplateViewerInterface
 
     private function getBlocks(string $code): array
     {
-        preg_match_all("#{% block (?<name>\w+) %}(?<content>.*){% endblock %}#", $code, $matches, PREG_SET_ORDER);
+        preg_match_all("#{% block (?<name>\w+) %}(?<content>.*?){% endblock %}#s", $code, $matches, PREG_SET_ORDER);
 
-        return $matches;
+        $blocks = [];
+
+        foreach ($matches as $match) {
+            $blocks[$match["name"]] = $match["content"];
+        }
+
+        return $blocks;
     }
 }
