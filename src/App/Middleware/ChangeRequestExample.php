@@ -6,9 +6,10 @@ namespace App\Middleware;
 
 use Framework\Request;
 use Framework\Response;
+use Framework\MiddlewareInterface;
 use Framework\RequestHandlerInterface;
 
-class ChangeRequestExample
+class ChangeRequestExample implements MiddlewareInterface
 {
     public function process (Request $request, RequestHandlerInterface $next): Response
     {
