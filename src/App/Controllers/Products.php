@@ -30,27 +30,18 @@ class Products extends Controller
         $products = $this->model->findAll();
 
         echo $this->viewer->render("Products/index.mvc.php", [
-          "title" => "Products",
           "products" => $products,
           "total" => $this->model->getTotal()
         ]);
-
-        echo $this->viewer->render("shared/footer.php");
     }
 
     public function show(string $id)
     {
         $product = $this->getProduct($id);
 
-        echo $this->viewer->render("shared/header.php", [
-            "title" => "Product"
-        ]);
-
-        echo $this->viewer->render("Products/show.php", [
+        echo $this->viewer->render("Products/show.mvc.php", [
             "product" => $product
         ]);
-
-        echo $this->viewer->render("shared/footer.php");
     }
 
     public function edit(string $id)
