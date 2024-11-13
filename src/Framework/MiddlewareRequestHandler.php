@@ -13,8 +13,12 @@ class MiddlewareRequestHandler implements RequestHandlerInterface
 
     public function handle(Request $request): Response
     {
-        $middleware = $this->middlewares[0];
+        $middleware = array_shift($this->middlewares);
 
-        return $middleware->process($request, $this->controller_handler);
+        if ($middleware === null) {
+            return $this->controller_handler->handle($request);
+        }
+
+        return $middleware->process($request, $this);
     }
 }
